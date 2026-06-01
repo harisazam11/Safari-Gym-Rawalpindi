@@ -101,6 +101,14 @@
     color: var(--gold);
   }
 
+  .photo-slot-image{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+  
   /* ===== PHOTO PLACEHOLDER ===== */
   .photo-slot {
     background: var(--black-3);
@@ -1130,6 +1138,14 @@
     border-radius: 50%;
   }
 
+  .bar-photo .photo-slot{
+    background:#000;
+}
+
+.bar-photo img{
+    object-fit:contain;
+}
+
   /* ===== MOBILE ===== */
   @media (max-width: 900px) {
     #about { grid-template-columns: 1fr; gap: 40px; }
@@ -1191,7 +1207,7 @@
     <img src="main-gym-floor.jpg" alt="Gym Background" class="photo-slot-image">
   </div>
     </div>
-  </div>
+
   <div class="hero-overlay"></div>
   <div class="hero-glow"></div>
   <div class="hero-grain"></div>
@@ -1367,14 +1383,7 @@
         <div class="gallery-item-overlay"><div class="gallery-zoom-icon">+</div></div>
       </div>
       <!-- Slot 3 -->
-      <div class="gallery-item">
-        <div class="photo-slot">
-          <div class="photo-slot-icon">📸</div>
-          <div class="photo-slot-label">Machines Close-up</div>
-          <div class="photo-slot-file">google-maps-image (5).jpg</div>
-        </div>
-        <div class="gallery-item-overlay"><div class="gallery-zoom-icon">+</div></div>
-      </div>
+      
       <!-- Slot 4 -->
       <div class="gallery-item">
         <div class="photo-slot">
@@ -1385,14 +1394,7 @@
         <div class="gallery-item-overlay"><div class="gallery-zoom-icon">+</div></div>
       </div>
       <!-- Slot 5 -->
-      <div class="gallery-item">
-        <div class="photo-slot">
-          <div class="photo-slot-icon">📸</div>
-          <div class="photo-slot-label">Ladies Aerobics Class</div>
-          <div class="photo-slot-file">google-maps-image (1).jpg</div>
-        </div>
-        <div class="gallery-item-overlay"><div class="gallery-zoom-icon">+</div></div>
-      </div>
+      
       <!-- Slot 6 -->
       <div class="gallery-item">
         <div class="photo-slot">
@@ -1500,38 +1502,27 @@
     </div>
 
     <!-- Client Stories / Videos -->
-    <div class="client-stories reveal">
-      <div class="client-stories-title">▶ Client Stories</div>
-      <div class="video-grid">
-        <!-- Video 1 -->
-        <div class="video-card">
-          <!-- TO ADD VIDEO: Replace this block with: -->
-          <!-- <video controls src="your-video-file.mp4"></video> -->
-          <!-- OR for YouTube: <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
-          <div class="video-placeholder">
-            <div class="video-play">▶</div>
-            <div class="video-label">Client Story 1</div>
-            <video controls autoplay muted loop>
-    <source src="client-1.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-          </div>
-        </div>
-        <!-- Video 2 -->
-        <div class="video-card">
-          <div class="video-placeholder">
-            <div class="video-play">▶</div>
-            <div class="video-label">Client Story 2</div>
-            <video controls autoplay muted loop>
-    <source src="client-2.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-          </div>
-        </div>
-      </div>
+ <div class="client-stories reveal">
+  <div class="client-stories-title">▶ Client Stories</div>
+
+  <div class="video-grid">
+
+    <div class="video-card">
+      <video controls muted loop>
+        <source src="client-1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
+
+    <div class="video-card">
+      <video controls muted loop>
+        <source src="client-2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
   </div>
-</section>
+</div>
 
 <!-- ===== BAR MENU ===== -->
 <section id="bar">
@@ -1554,7 +1545,7 @@
 </div>
       </div>
     </div>
-  </div>
+  
 </section>
 
 <!-- ===== LOCATION ===== -->
