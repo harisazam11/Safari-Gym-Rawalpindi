@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safari Gym & Spa — Bahria Town, Rawalpindi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== VARIABLES ===== */
+  :root {
+    --gold: #FFB300;
+    --gold-light: #F5C518;
+    --gold-dark: #CC8800;
+    --black: #080808;
+    --black-2: #0e0e0e;
+    --black-3: #141414;
+    --black-4: #1a1a1a;
+    --white: #ffffff;
+    --grey: #999999;
+    --grey-light: #bbbbbb;
+  }
+
+  /* ===== RESET ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ===== TYPOGRAPHY ===== */
+  .heading {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .serif { font-family: 'Cormorant Garamond', serif; }
+
+  /* ===== GOLD GLOW ===== */
+  .gold-glow { color: var(--gold); text-shadow: 0 0 40px rgba(255,179,0,0.5), 0 0 80px rgba(255,179,0,0.2); }
+
+  /* ===== SECTION LABEL ===== */
+  .section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.2rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  /* ===== BUTTONS ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 30px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--black);
+  }
+  .btn-gold:hover {
+    background: var(--gold-light);
+    box-shadow: 0 0 30px rgba(255,179,0,0.4);
+    transform: translateY(-1px);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ===== PHOTO PLACEHOLDER ===== */
+  .photo-slot {
+    background: var(--black-3);
+    border: 1.5px dashed rgba(255,179,0,0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-slot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,179,0,0.03) 0%, transparent 60%);
+  }
+  .photo-slot-icon { font-size: 2rem; opacity: 0.4; }
+  .photo-slot-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .photo-slot-file {
+    font-size: 0.7rem;
+    color: var(--grey);
+    font-family: monospace;
+    background: rgba(255,179,0,0.08);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 0 5%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(8,8,8,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,179,0,0.1);
+    transition: all 0.3s;
+  }
+  nav.scrolled {
+    height: 60px;
+    background: rgba(8,8,8,0.97);
+    border-bottom-color: rgba(255,179,0,0.2);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nav-logo-badge {
+    width: 42px;
+    height: 42px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.65rem;
+    color: var(--black);
+    letter-spacing: 0.05em;
+    text-align: center;
+    line-height: 1.1;
+  }
+  .nav-logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .nav-logo-text span { color: var(--gold); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--grey-light);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-join {
+    background: var(--gold);
+    color: var(--black) !important;
+    padding: 9px 20px;
+    font-weight: 500 !important;
+    transition: all 0.2s !important;
+  }
+  .nav-join:hover {
+    background: var(--gold-light) !important;
+    color: var(--black) !important;
+    box-shadow: 0 0 20px rgba(255,179,0,0.35);
+  }
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--white);
+    transition: all 0.3s;
+  }
+
+  /* ===== HERO ===== */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 0 5%;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .hero-photo .photo-slot {
+    height: 100%;
+    border: none;
+    background: var(--black-3);
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      105deg,
+      rgba(8,8,8,0.95) 0%,
+      rgba(8,8,8,0.80) 45%,
+      rgba(8,8,8,0.3) 100%
+    );
+  }
+  /* gold glow bottom-left */
+  .hero-glow {
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,179,0,0.12) 0%, transparent 70%);
+    z-index: 3;
+    pointer-events: none;
+  }
+  /* grain texture */
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23noise)' opacity='1' fill='%23FFB300'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 680px;
+    padding-top: 70px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,179,0,0.1);
+    border: 1px solid rgba(255,179,0,0.3);
+    padding: 8px 16px;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+  .hero-badge::before { content: '★'; }
+  .hero-h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 13vw, 10rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+  .hero-h1 .gold-line { color: var(--gold); display: block; }
+  .hero-sub {
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: var(--grey-light);
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 5%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  .hero-scroll-line {
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { width: 50px; opacity: 0.5; }
+    50% { width: 80px; opacity: 1; }
+  }
+
+  /* ===== STATS BAR ===== */
+  #stats {
+    background: var(--gold);
+    padding: 0;
+  }
+  .stats-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 28px 24px;
+    text-align: center;
+    border-right: 1px solid rgba(8,8,8,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: var(--black);
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+  .stat-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(8,8,8,0.65);
+  }
+
+  /* ===== ABOUT ===== */
+  #about {
+    padding: 120px 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .about-text {}
+  .about-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .about-headline em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .about-body {
+    font-size: 0.95rem;
+    color: var(--grey-light);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .about-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .about-card {
+    background: var(--black-3);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 18px;
+    transition: all 0.3s;
+  }
+  .about-card:hover {
+    border-color: rgba(255,179,0,0.3);
+    background: rgba(255,179,0,0.04);
+  }
+  .about-card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .about-card-title {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .about-card-desc {
+    font-size: 0.72rem;
+    color: var(--grey);
+    line-height: 1.5;
+  }
+  .about-photo {
+    height: 600px;
+    position: relative;
+  }
+  .about-photo .photo-slot {
+    height: 100%;
+  }
+  .about-photo-accent {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 200px;
+    height: 200px;
+    border: 2px solid var(--gold);
+    z-index: -1;
+    opacity: 0.3;
+  }
+
+  /* ===== SERVICES ===== */
+  #services {
+    padding: 100px 5%;
+    background: var(--black-2);
+  }
+  .services-inner { max-width: 1300px; margin: 0 auto; }
+  .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+  .section-header .section-label {
+    justify-content: center;
+  }
+  .section-header .section-label::before { display: none; }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 0.95rem;
+    color: var(--grey);
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .service-col {
+    background: var(--black-3);
+    padding: 40px 32px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .service-col-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,179,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .service-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .service-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--grey-light);
+    line-height: 1.4;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .service-list li:last-child { border-bottom: none; }
+  .service-emoji { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* ===== GALLERY ===== */
+  #gallery {
+    padding: 100px 5%;
+  }
+  .gallery-inner { max-width: 1400px; margin: 0 auto; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 6px;
+    margin-top: 50px;
+  }
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .gallery-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .gallery-item.tall { grid-row: span 2; }
+  .gallery-item .photo-slot {
+    height: 260px;
+  }
+  .gallery-item.large .photo-slot,
+  .gallery-item.tall .photo-slot {
+    height: 100%;
+    min-height: 530px;
+  }
+  .gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,179,0,0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    z-index: 5;
+  }
+  .gallery-item:hover .gallery-item-overlay {
+    background: rgba(255,179,0,0.15);
+    backdrop-filter: brightness(1.1);
+  }
+  .gallery-item:hover .photo-slot {
+    transform: scale(1.03);
+    transition: transform 0.5s ease;
+  }
+  .gallery-zoom-icon {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-item:hover .gallery-zoom-icon { opacity: 1; }
+
+  /* ===== PLATINUM ===== */
+  #platinum {
+    padding: 120px 5%;
+    background: linear-gradient(135deg, #0d0a00 0%, #1a1200 40%, #0a0800 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .platinum-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(255,179,0,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .platinum-lines {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(255,179,0,0.03) 0px,
+      rgba(255,179,0,0.03) 1px,
+      transparent 1px,
+      transparent 60px
+    );
+    pointer-events: none;
+  }
+  .platinum-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .platinum-badge {
+    display: inline-block;
+    background: rgba(255,179,0,0.12);
+    border: 1px solid rgba(255,179,0,0.4);
+    color: var(--gold);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    margin-bottom: 2.5rem;
+  }
+  .platinum-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.92;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .platinum-headline .gold { color: var(--gold); }
+  .platinum-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--gold-light);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+  }
+  .platinum-body {
+    font-size: 0.95rem;
+    color: var(--grey-light);
+    line-height: 1.8;
+    max-width: 620px;
+    margin: 0 auto 2.5rem;
+  }
+  .platinum-details {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .platinum-detail-badge {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,179,0,0.2);
+    padding: 10px 20px;
+    font-size: 0.78rem;
+    color: var(--grey-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .platinum-detail-badge span { color: var(--gold); }
+  .platinum-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto 3rem;
+  }
+
+  /* ===== REVIEWS ===== */
+  #reviews {
+    padding: 100px 5%;
+    background: var(--black-2);
+  }
+  .reviews-inner { max-width: 1300px; margin: 0 auto; }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+  }
+  .review-card {
+    background: var(--black-3);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 28px 30px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .review-card:hover {
+    border-color: rgba(255,179,0,0.25);
+  }
+  .review-card::before {
+    content: '"';
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.15;
+    line-height: 1;
+  }
+  .review-stars {
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+  }
+  .review-text {
+    font-size: 0.88rem;
+    color: var(--grey-light);
+    line-height: 1.75;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+  }
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .review-avatar {
+    width: 38px;
+    height: 38px;
+    background: rgba(255,179,0,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--gold);
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .review-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+  .review-guide {
+    font-size: 0.68rem;
+    color: var(--grey);
+    letter-spacing: 0.1em;
+  }
+  .client-stories { margin-top: 60px; }
+  .client-stories-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .video-card {
+    background: var(--black-3);
+    border: 1px solid rgba(255,179,0,0.2);
+    aspect-ratio: 16/9;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .video-card video, .video-card iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .video-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    z-index: 2;
+  }
+  .video-play {
+    width: 64px;
+    height: 64px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 1.3rem;
+    padding-left: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .video-play:hover {
+    background: rgba(255,179,0,0.15);
+    box-shadow: 0 0 30px rgba(255,179,0,0.3);
+  }
+  .video-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .video-instruction {
+    font-size: 0.65rem;
+    color: var(--grey);
+    text-align: center;
+    max-width: 220px;
+    line-height: 1.5;
+  }
+  .video-filename {
+    font-family: monospace;
+    font-size: 0.65rem;
+    color: rgba(255,179,0,0.5);
+    background: rgba(255,179,0,0.06);
+    padding: 3px 10px;
+    border-radius: 3px;
+  }
+
+  /* ===== BAR MENU ===== */
+  #bar {
+    padding: 100px 5%;
+  }
+  .bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .bar-text {}
+  .bar-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    line-height: 1;
+    margin-bottom: 1.4rem;
+  }
+  .bar-headline em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .bar-body {
+    font-size: 0.92rem;
+    color: var(--grey-light);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .bar-perks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 2.5rem;
+  }
+  .bar-perk {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.82rem;
+    color: var(--grey-light);
+  }
+  .bar-perk::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .bar-photo {
+    height: 480px;
+    position: relative;
+  }
+  .bar-photo .photo-slot { height: 100%; }
+
+  /* ===== LOCATION ===== */
+  #location {
+    padding: 100px 5%;
+    background: var(--black-2);
+  }
+  .location-inner { max-width: 1300px; margin: 0 auto; }
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 60px;
+  }
+  .location-details {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .location-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .location-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255,179,0,0.1);
+    border: 1px solid rgba(255,179,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .location-item-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  .location-item-value {
+    font-size: 0.9rem;
+    color: var(--grey-light);
+    line-height: 1.6;
+  }
+  .location-ctas {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .map-embed {
+    height: 460px;
+    overflow: hidden;
+    border: 1px solid rgba(255,179,0,0.15);
+    position: relative;
+  }
+  .map-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    filter: grayscale(100%) invert(92%) contrast(0.9);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #040404;
+    padding: 60px 5% 30px;
+    border-top: 1px solid rgba(255,179,0,0.1);
+  }
+  .footer-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 30px;
+  }
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .footer-logo-badge {
+    width: 46px;
+    height: 46px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.6rem;
+    color: var(--black);
+    letter-spacing: 0.05em;
+    text-align: center;
+    line-height: 1.15;
+    flex-shrink: 0;
+  }
+  .footer-logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .footer-logo-text span { color: var(--gold); }
+  .footer-tagline {
+    font-size: 0.78rem;
+    color: var(--grey);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 10px;
+  }
+  .social-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--grey);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .social-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(255,179,0,0.08);
+  }
+  .footer-col-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a {
+    font-size: 0.82rem;
+    color: var(--grey);
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-bottom {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.3);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ===== WHATSAPP FLOAT ===== */
+  .wa-float {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 9999;
+    width: 56px;
+    height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    cursor: pointer;
+    animation: waPulse 2.5s ease-in-out infinite;
+    transition: transform 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); animation: none; }
+  @keyframes waPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 4px 40px rgba(37,211,102,0.7), 0 0 0 10px rgba(37,211,102,0.1); }
+  }
+
+  /* ===== SCROLL ANIMATIONS ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ===== FACEBOOK SOCIAL PROOF ===== */
+  .social-proof-bar {
+    background: rgba(255,179,0,0.04);
+    border-top: 1px solid rgba(255,179,0,0.1);
+    border-bottom: 1px solid rgba(255,179,0,0.1);
+    padding: 14px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .social-proof-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    color: var(--grey);
+    letter-spacing: 0.1em;
+  }
+  .social-proof-item strong { color: var(--gold); font-size: 0.9rem; }
+  .social-proof-dot {
+    width: 4px;
+    height: 4px;
+    background: rgba(255,179,0,0.3);
+    border-radius: 50%;
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 900px) {
+    #about { grid-template-columns: 1fr; gap: 40px; }
+    .about-photo { height: 350px; order: -1; }
+    .services-grid { grid-template-columns: 1fr; }
+    .bar-inner { grid-template-columns: 1fr; gap: 40px; }
+    .bar-photo { height: 300px; order: -1; }
+    .location-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .video-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item.large { grid-column: span 2; }
+    .gallery-item.large .photo-slot,
+    .gallery-item.tall .photo-slot { min-height: 300px; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(8,8,8,0.1); }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+  @media (max-width: 600px) {
+    .footer-inner { grid-template-columns: 1fr; }
+    .hero-h1 { font-size: 5rem; }
+    .platinum-headline { font-size: 3.5rem; }
+    .about-cards { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item.large { grid-column: span 1; }
+    .platinum-details { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="nav-logo-badge">SAFARI<br>GYM</div>
+    <div class="nav-logo-text">Safari <span>Gym</span> & Spa</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#platinum">Platinum Class</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="https://wa.me/923304933387" target="_blank" class="nav-join">Join Now</a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-photo">
+    <div class="photo-slot">
+      <div class="photo-slot-icon">📸</div>
+      <div class="photo-slot-label">Hero Background Photo</div>
+      <div class="photo-slot-file">google-maps-image (4).jpg</div>
+      <div style="font-size:0.65rem;color:var(--grey);margin-top:6px;">Wide gym floor shot — full screen background</div>
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-badge">4.4 ★ · 374 Google Reviews · Bahria Town</div>
+    <h1 class="hero-h1">
+      Respect<br>
+      <span class="gold-line">The Iron.</span>
+    </h1>
+    <p class="hero-sub">Bahria Town's most complete fitness and wellness experience.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/923304933387" target="_blank" class="btn btn-gold">Join Now →</a>
+      <a href="#services" class="btn btn-outline">Explore Services</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ===== SOCIAL PROOF BAR ===== -->
+<div class="social-proof-bar">
+  <div class="social-proof-item">📘 <strong>24K+</strong> Facebook Followers</div>
+  <div class="social-proof-dot"></div>
+  <div class="social-proof-item">⭐ <strong>4.4</strong> Google Rating</div>
+  <div class="social-proof-dot"></div>
+  <div class="social-proof-item">📍 <strong>Heart of Bahria Town</strong>, Rawalpindi</div>
+  <div class="social-proof-dot"></div>
+  <div class="social-proof-item">🏅 <strong>4+ Years</strong> of Loyal Members</div>
+</div>
+
+<!-- ===== STATS BAR ===== -->
+<div id="stats">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">374+</div>
+      <div class="stat-label">Google Reviews</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.4★</div>
+      <div class="stat-label">Average Rating</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Years Members</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Separate Ladies & Gents Halls</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="about-text reveal">
+    <div class="section-label">Our Story</div>
+    <h2 class="about-headline">More Than A Gym.<br><em>A Complete Wellness Destination.</em></h2>
+    <p class="about-body">
+      Safari Gym & Spa lies in the heart of Bahria Town, Rawalpindi — located in Safari Mall Basement, Safari Villas 1. We offer everything from world-class gym equipment to spa treatments, sauna, massage therapy, yoga, aerobics, and a dedicated ladies-only gym. Whatever your fitness or wellness goal, we have it all under one roof.
+    </p>
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="about-card-icon">🏋️</div>
+        <div class="about-card-title">Separate Halls</div>
+        <div class="about-card-desc">Ladies & Gents, no timing conflicts</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🧖</div>
+        <div class="about-card-title">Full Spa & Sauna</div>
+        <div class="about-card-desc">Premium wellness services on-site</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🚿</div>
+        <div class="about-card-title">Shower & Locker Facilities</div>
+        <div class="about-card-desc">Clean hot showers, locker rooms</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🕌</div>
+        <div class="about-card-title">Prayer Area</div>
+        <div class="about-card-desc">On-site prayer facility for members</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-photo reveal reveal-delay-2">
+    <div class="photo-slot">
+      <div class="photo-slot-icon">📸</div>
+      <div class="photo-slot-label">About Section Photo</div>
+      <div class="photo-slot-file">google-maps-image (2).jpg</div>
+      <div style="font-size:0.65rem;color:var(--grey);margin-top:6px;">Reception / lounge area</div>
+    </div>
+    <div class="about-photo-accent"></div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="services-inner">
+    <div class="section-header reveal">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Everything Under <span style="color:var(--gold)">One Roof</span></h2>
+      <p class="section-sub">Fitness. Wellness. Recovery. All in Bahria Town.</p>
+    </div>
+    <div class="services-grid reveal">
+      <!-- Fitness -->
+      <div class="service-col">
+        <div class="service-col-title">🏋️ Fitness</div>
+        <ul class="service-list">
+          <li><span class="service-emoji">💪</span> Gym (Gents)</li>
+          <li><span class="service-emoji">👩</span> Ladies Gym</li>
+          <li><span class="service-emoji">🧘</span> Yoga</li>
+          <li><span class="service-emoji">🏃</span> Aerobics</li>
+          <li><span class="service-emoji">👩‍🦳</span> Female Fitness (50+)</li>
+          <li><span class="service-emoji">🥊</span> Functional Training Area</li>
+          <li><span class="service-emoji">👨‍🏫</span> Personal Training</li>
+        </ul>
+      </div>
+      <!-- Wellness -->
+      <div class="service-col">
+        <div class="service-col-title">🧖 Wellness & Spa</div>
+        <ul class="service-list">
+          <li><span class="service-emoji">🧖</span> Sauna Bath</li>
+          <li><span class="service-emoji">💨</span> Steam Bath</li>
+          <li><span class="service-emoji">💆</span> Thai Massage</li>
+          <li><span class="service-emoji">💆</span> Swedish Massage</li>
+          <li><span class="service-emoji">💆</span> Deep Back Massage</li>
+          <li><span class="service-emoji">💆</span> Deep Back Full Massage</li>
+          <li><span class="service-emoji">🧴</span> Body Scrub</li>
+          <li><span class="service-emoji">💊</span> Physiotherapy Services</li>
+          <li><span class="service-emoji">💊</span> Massage Service</li>
+        </ul>
+      </div>
+      <!-- Amenities -->
+      <div class="service-col">
+        <div class="service-col-title">✨ Amenities</div>
+        <ul class="service-list">
+          <li><span class="service-emoji">🍹</span> Sports Bar (Bar Menu available)</li>
+          <li><span class="service-emoji">🔒</span> Locker Rooms</li>
+          <li><span class="service-emoji">🛋️</span> Waiting Lounge</li>
+          <li><span class="service-emoji">💧</span> Mineral Drinking Water</li>
+          <li><span class="service-emoji">🕌</span> Prayer Area</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery">
+  <div class="gallery-inner">
+    <div class="section-header reveal">
+      <div class="section-label">The Space</div>
+      <h2 class="section-title">Inside <span style="color:var(--gold)">Safari Gym</span></h2>
+      <p class="section-sub">World-class equipment. Premium environment.</p>
+    </div>
+    <div class="gallery-grid">
+      <!-- Slot 1 - Large -->
+      <div class="gallery-item large">
+        <div class="photo-slot">
+          <div class="photo-slot-icon">📸</div>
+          <div class="photo-slot-label">Main Gym Floor — LARGE (2 cols × 2 rows)</div>
+          <div class="photo-slot-file">google-maps-image (3).jpg</div>
+        </div>
+        <div class="gallery-item-overlay"><div class="gallery-zoom-icon">+</div></div>
+      </div>
+      <!-- Slot 2 -->
+      <div class="gallery-item">
+        <div class="photo-slot">
+          <div class="photo-slot-icon">📸</div>
+          <div class="photo-slot-label">Equipment Area</div>
+          <div class="photo-slot-file">google-maps-image (4).jpg</div>
+        </div>
+        <div class="gallery-item-overlay"><div class="gallery-zoom-icon">+</div></div>
+      </div>
+      <!-- Slot 3 -->
+      <div class="gallery-item">
+        <div class="photo-slot">
+          <div class="photo-slot-icon">📸</div>
+          <div class="photo-slot-label">Machines Close-up</div>
+          <div class="photo-slot-file">google-maps-image (5).jpg</div>
+        </div>
+        <div class="gallery-item-overlay"><div class="gallery-zoom-icon">+</div></div>
+      </div>
+      <!-- Slot 4 -->
+      <div class="gallery-item">
+        <div class="photo-slot">
+          <div class="photo-slot-icon">📸</div>
+          <div class="photo-slot-label">Lounge / Reception</div>
+          <div class="photo-slot-file">google-maps-image (2).jpg</div>
+        </div>
+        <div class="gallery-item-overlay"><div class="gallery-zoom-icon">+</div></div>
+      </div>
+      <!-- Slot 5 -->
+      <div class="gallery-item">
+        <div class="photo-slot">
+          <div class="photo-slot-icon">📸</div>
+          <div class="photo-slot-label">Ladies Aerobics Class</div>
+          <div class="photo-slot-file">google-maps-image (1).jpg</div>
+        </div>
+        <div class="gallery-item-overlay"><div class="gallery-zoom-icon">+</div></div>
+      </div>
+      <!-- Slot 6 -->
+      <div class="gallery-item">
+        <div class="photo-slot">
+          <div class="photo-slot-icon">📸</div>
+          <div class="photo-slot-label">Entrance / Interior</div>
+          <div class="photo-slot-file">google-maps-image (6).jpg</div>
+        </div>
+        <div class="gallery-item-overlay"><div class="gallery-zoom-icon">+</div></div>
+      </div>
+      <!-- Slot 7 -->
+      <div class="gallery-item">
+        <div class="photo-slot">
+          <div class="photo-slot-icon">📸</div>
+          <div class="photo-slot-label">Safari Gym Overall View</div>
+          <div class="photo-slot-file">google-maps-image.jpg</div>
+        </div>
+        <div class="gallery-item-overlay"><div class="gallery-zoom-icon">+</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PLATINUM CLASS ===== -->
+<section id="platinum">
+  <div class="platinum-glow"></div>
+  <div class="platinum-lines"></div>
+  <div class="platinum-inner reveal">
+    <div class="platinum-badge">✦ Exclusive Program ✦</div>
+    <div class="platinum-divider"></div>
+    <h2 class="platinum-headline">
+      Age Is Just<br>
+      A Number.<br>
+      <span class="gold">Strength Isn't.</span>
+    </h2>
+    <p class="platinum-sub">Platinum Class by Dr. Nadia</p>
+    <p class="platinum-body">
+      A fitness program designed specifically for 50+. Safe, guided, and built to keep you active, strong, and confident. Join our Fitness Class for 50+ and move better every day. Because strength, vitality, and wellness have no age limit.
+    </p>
+    <div class="platinum-details">
+      <div class="platinum-detail-badge"><span>👤</span> Dr. Nadia</div>
+      <div class="platinum-detail-badge"><span>📍</span> Safari Mall Basement</div>
+      <div class="platinum-detail-badge"><span>📞</span> 0330-4933387</div>
+    </div>
+    <a href="https://wa.me/923304933387?text=I%20want%20to%20join%20Platinum%20Class%2050%2B" target="_blank" class="btn btn-gold">Join Platinum Class →</a>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section id="reviews">
+  <div class="reviews-inner">
+    <div class="section-header reveal">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">What Our <span style="color:var(--gold)">Members Say</span></h2>
+      <p class="section-sub">4.4 stars · 374 Google Reviews</p>
+    </div>
+    <div class="reviews-grid reveal">
+      <!-- Review 1 -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Loved my experience. Clean and tidy interior. Almost all necessary workout equipment available and well maintained. Great cooperative and respectful staff. Locker facility, changing rooms and shower facility are amazing. Discounts available on monthly packages."</p>
+        <div class="review-author">
+          <div class="review-avatar">EH</div>
+          <div>
+            <div class="review-name">Ehtasham Hussain</div>
+            <div class="review-guide">Local Guide · Google Review</div>
+          </div>
+        </div>
+      </div>
+      <!-- Review 2 -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Finally a gym for only women. Absolutely love how clean this gym is. Thank you for providing a space where women can comfortably workout."</p>
+        <div class="review-author">
+          <div class="review-avatar">RJ</div>
+          <div>
+            <div class="review-name">Rafia Javed</div>
+            <div class="review-guide">Local Guide · Google Review</div>
+          </div>
+        </div>
+      </div>
+      <!-- Review 3 -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Have been working out here for more than 4 years. Wonderful experience — machines and management are top-notch. One of the best gyms in the twin cities."</p>
+        <div class="review-author">
+          <div class="review-avatar">ZZ</div>
+          <div>
+            <div class="review-name">Zubair Zia</div>
+            <div class="review-guide">Google Review</div>
+          </div>
+        </div>
+      </div>
+      <!-- Review 4 -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Haven't seen such a nice gym at this price even in Islamabad. Clean hot shower, prayer area, clean washrooms, spacious. Separate gym for men and women so no timing conflict either. Perfect."</p>
+        <div class="review-author">
+          <div class="review-avatar">OS</div>
+          <div>
+            <div class="review-name">Osman</div>
+            <div class="review-guide">Local Guide · Google Review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Client Stories / Videos -->
+    <div class="client-stories reveal">
+      <div class="client-stories-title">▶ Client Stories</div>
+      <div class="video-grid">
+        <!-- Video 1 -->
+        <div class="video-card">
+          <!-- TO ADD VIDEO: Replace this block with: -->
+          <!-- <video controls src="your-video-file.mp4"></video> -->
+          <!-- OR for YouTube: <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
+          <div class="video-placeholder">
+            <div class="video-play">▶</div>
+            <div class="video-label">Client Story 1</div>
+            <div class="video-instruction">Replace with video file or YouTube/TikTok link</div>
+            <div class="video-filename">&lt;video src="client-story-1.mp4"&gt;</div>
+          </div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-card">
+          <div class="video-placeholder">
+            <div class="video-play">▶</div>
+            <div class="video-label">Client Story 2</div>
+            <div class="video-instruction">Replace with video file or YouTube/TikTok link</div>
+            <div class="video-filename">&lt;video src="client-story-2.mp4"&gt;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BAR MENU ===== -->
+<section id="bar">
+  <div class="bar-inner">
+    <div class="bar-text reveal">
+      <div class="section-label">Sports Bar</div>
+      <h2 class="bar-headline">Fuel Your Workout.<br><em>Safari Sports Bar.</em></h2>
+      <p class="bar-body">Freshly made juices, smoothies, and nutrition shakes — available right at the gym. Discounted rates for members.</p>
+      <div class="bar-perks">
+        <div class="bar-perk">Fresh Juices & Smoothies Daily</div>
+        <div class="bar-perk">Protein Shakes & Nutrition Supplements</div>
+        <div class="bar-perk">Exclusive Discounts for Members</div>
+        <div class="bar-perk">Available During All Gym Hours</div>
+      </div>
+      <a href="https://wa.me/923304933387?text=I%20want%20to%20see%20the%20Bar%20Menu" target="_blank" class="btn btn-gold">View Full Menu →</a>
+    </div>
+    <div class="bar-photo reveal reveal-delay-2">
+      <div class="photo-slot">
+        <div class="photo-slot-icon">📸</div>
+        <div class="photo-slot-label">Bar Menu Photo</div>
+        <div class="photo-slot-file">bar-menu.jpg</div>
+        <div style="font-size:0.65rem;color:var(--grey);margin-top:6px;">Sports bar / menu board photo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section id="location">
+  <div class="location-inner">
+    <div class="section-header reveal">
+      <div class="section-label">Find Us</div>
+      <h2 class="section-title">Find Us In <span style="color:var(--gold)">Bahria Town</span></h2>
+    </div>
+    <div class="location-grid">
+      <div class="location-details reveal">
+        <div class="location-item">
+          <div class="location-icon">📍</div>
+          <div>
+            <div class="location-item-label">Address</div>
+            <div class="location-item-value">Basement Safari Mall, 18 College Rd,<br>Safari Villas, Bahria Town,<br>Rawalpindi 46000</div>
+          </div>
+        </div>
+        <div class="location-item">
+          <div class="location-icon">📞</div>
+          <div>
+            <div class="location-item-label">Phone</div>
+            <div class="location-item-value">
+              <a href="tel:05157070830" style="color:var(--gold)">051-5707083</a><br>
+              <a href="tel:03304933387" style="color:var(--gold)">0330-4933387</a>
+            </div>
+          </div>
+        </div>
+        <div class="location-item">
+          <div class="location-icon">🕐</div>
+          <div>
+            <div class="location-item-label">Hours</div>
+            <div class="location-item-value">
+              Mon–Sat: 7:00 AM – 10:30 PM<br>
+              Sunday: 12:00 PM – 10:00 PM
+            </div>
+          </div>
+        </div>
+        <div class="location-ctas">
+          <a href="https://wa.me/923304933387" target="_blank" class="btn btn-gold">💬 WhatsApp Us</a>
+          <a href="https://maps.app.goo.gl/faewuSz5sK4yhyBS7" target="_blank" class="btn btn-outline">🗺 Get Directions</a>
+        </div>
+      </div>
+      <div class="map-embed reveal reveal-delay-2">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3322.3!2d73.0!3d33.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDMwJzAwLjAiTiA3M8KwMDAnMDAuMCJF!5e0!3m2!1sen!2spk!4v1234567890"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Safari Gym & Spa Location"
+          allowfullscreen>
+        </iframe>
+        <!-- REAL MAP: Replace the src above with the embed URL from: https://maps.app.goo.gl/faewuSz5sK4yhyBS7 → Share → Embed a map → Copy HTML → paste src here -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <div class="footer-logo-badge">SAFARI<br>GYM</div>
+        <div class="footer-logo-text">Safari <span>Gym</span> & Spa</div>
+      </div>
+      <p class="footer-tagline">"The Best Equipment & Staff.<br>In The Heart of Bahria Town."</p>
+      <div class="footer-socials">
+        <a href="https://facebook.com" target="_blank" class="social-btn" title="Facebook">f</a>
+        <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram">📷</a>
+        <a href="https://tiktok.com" target="_blank" class="social-btn" title="TikTok">♪</a>
+        <a href="https://wa.me/923304933387" target="_blank" class="social-btn" title="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navigate</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#platinum">Platinum Class</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul>
+        <li><a href="#services">Gym (Gents)</a></li>
+        <li><a href="#services">Ladies Gym</a></li>
+        <li><a href="#services">Yoga & Aerobics</a></li>
+        <li><a href="#services">Sauna & Steam</a></li>
+        <li><a href="#services">Massage & Spa</a></li>
+        <li><a href="#services">Personal Training</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <ul>
+        <li><a href="tel:05157070830">051-5707083</a></li>
+        <li><a href="tel:03304933387">0330-4933387</a></li>
+        <li><a href="https://wa.me/923304933387" target="_blank">WhatsApp</a></li>
+        <li><a href="https://maps.app.goo.gl/faewuSz5sK4yhyBS7" target="_blank">Get Directions</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Safari Gym & Spa. All rights reserved. Bahria Town, Rawalpindi.</span>
+    <span>Designed for the Premier Fitness Experience</span>
+  </div>
+</footer>
+
+<!-- ===== FLOATING WHATSAPP ===== -->
+<a href="https://wa.me/923304933387" target="_blank" class="wa-float" title="Chat on WhatsApp">💬</a>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile menu toggle
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const isVisible = links.style.display === 'flex';
+    links.style.cssText = isVisible ? '' : 'display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:rgba(8,8,8,0.98);padding:20px 5%;gap:16px;border-bottom:1px solid rgba(255,179,0,0.1);backdrop-filter:blur(20px);';
+  }
+
+  // Scroll animations
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // close mobile menu
+      const links = document.querySelector('.nav-links');
+      if (links.style.display === 'flex' && window.innerWidth < 900) links.style.cssText = '';
+    });
+  });
+
+  // Counter animation for stats
+  function animateCount(el, target, suffix) {
+    let start = 0;
+    const duration = 1500;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const nums = entry.target.querySelectorAll('.stat-num');
+        const data = [
+          { target: 374, suffix: '+' },
+          { target: 4.4, suffix: '★', isFloat: true },
+          { target: 4, suffix: '+' },
+          { target: 2, suffix: '' }
+        ];
+        nums.forEach((el, i) => {
+          if (data[i].isFloat) {
+            el.textContent = data[i].target + data[i].suffix;
+          } else {
+            animateCount(el, data[i].target, data[i].suffix);
+          }
+        });
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const statsBar = document.getElementById('stats');
+  if (statsBar) statsObserver.observe(statsBar);
+</script>
+</body>
+</html>
